@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/view.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
   // create exercise route loads create.html
@@ -31,5 +31,16 @@ module.exports = function(app) {
   app.get("/users", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/user-manager.html"));
   });
+
+  // login route loads login.html
+  app.get('/login', function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
+  // log route log.html
+  app.get('/log', function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/log.html"));
+  });
+
 
 };

@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   app.get("/api/users", function(req, res) {
     // Here, an "include" property to the options in the findAll query
-    // Set the value to an array of the models th be included in a left outer join
+    // Set the value to an array of the models to be included in a left outer join
     // In this case, just db.Exercise
     db.User.findAll({
       include: [db.Exercise]
