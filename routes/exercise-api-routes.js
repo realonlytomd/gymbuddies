@@ -26,7 +26,7 @@ module.exports = function(app) {
     });
   });
 
-  // Get the route for retrieving a single post
+  // Get the route for retrieving a single exercise
   app.get("/api/exercises/:id", function(req, res) {
     // add an "include" property to the options in the findOne query
     // set the value to an array of the models to be included in a left outer join
