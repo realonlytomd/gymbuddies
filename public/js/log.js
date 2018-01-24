@@ -9,7 +9,7 @@ $(document).ready(function() {
 	function getExerciseList() {
 		var bodyPart = $("#category").val();
 		if(bodyPart !== "") {
-			//getExercises(bodyPart);
+			getExercises(bodyPart);
 		};
 	};
 
