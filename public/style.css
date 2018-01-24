@@ -1747,6 +1747,12 @@ ul {
     border-radius: 25px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+#category option {
+    color: #495057;
+}
+#exercise option {
+    color: #495057;
+}
 .custom-select {
     display: inline-block;
     width: 100%;
