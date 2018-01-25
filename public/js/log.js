@@ -4,10 +4,10 @@ $(document).ready(function() {
 
 	var exerciseSelect = $("#exercise");
 
-	$(document).on("change", "#category", getExerciseList);
+	$(document).on("change", "#body-part", getExerciseList);
 
 	function getExerciseList() {
-		var bodyPart = $("#category").val();
+		var bodyPart = $("#body-part").val();
 		if(bodyPart !== "") {
 			getExercises(bodyPart);
 		};
@@ -26,7 +26,6 @@ $(document).ready(function() {
     	};
     	exerciseSelect.empty();
     	exerciseSelect.append(rowsToAdd);
-    	console.log(rowsToAdd);
   	};
 
 	// Creates the options in the dropdown

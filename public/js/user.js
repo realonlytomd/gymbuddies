@@ -49,16 +49,16 @@ $(document).ready(function() {
   // }
 
   // Function for retrieving users and getting them ready to be rendered to the page
-  function getUsers() {
-    $.get("/api/users", function(data) {
+  // function getUsers() {
+  //   $.get("/api/users", function(data) {
       //var rowsToAdd = [];
       // for (var i = 0; i < data.length; i++) {
       //   rowsToAdd.push(createUserRow(data[i]));
       // }
       // renderUserList(rowsToAdd);
       // nameInput.val("");
-    });
-  }
+  //   });
+  // }
 
   // A function for rendering the list of users to the page
   // function renderUserList(rows) {
