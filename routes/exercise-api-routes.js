@@ -43,6 +43,10 @@ module.exports = function(app) {
 
   // POST route for saving a new exercise
   app.post("/api/exercises", function(req, res) {
+    // create a exercise model
+    // create a user model
+    // look at docs for creating a relationship bt models
+    // drilled down to req.body as the likely issue
     db.Exercise.create(req.body).then(function(dbExercise) {
       res.json(dbExercise);
     });
