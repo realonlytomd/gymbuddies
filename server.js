@@ -29,6 +29,7 @@ app.use(express.static("public"));
 require("./routes/exercise-api-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/html-routes.js")(app);
+require("./routes/exercise-list-api-routes.js")(app);
 
 // Sync the sequelize models and then start the Express app
 // =============================================================
