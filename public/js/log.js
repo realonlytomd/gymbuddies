@@ -26,6 +26,7 @@ $(document).ready(function() {
     	};
     	exerciseSelect.empty();
     	exerciseSelect.append(rowsToAdd);
+    	console.log(rowsToAdd);
   	};
 
 	// Creates the options in the dropdown
@@ -33,6 +34,7 @@ $(document).ready(function() {
     	var exerciseOption = $("<option>");
     	exerciseOption.attr("value", exercise.title);
     	exerciseOption.text(exercise.title);
+    	return exerciseOption;
   	};
 
 });
