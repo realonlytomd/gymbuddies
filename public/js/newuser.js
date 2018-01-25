@@ -20,7 +20,8 @@ $(document).ready(function() {
 //user login
   login.on('click', function(event){
     console.log('login ran');
-    //store user email and password
+
+
     event.preventDefault();
     var emailval = email.val();
     var pass = password.val();
@@ -37,6 +38,10 @@ $(document).ready(function() {
   //create new userData
   signup.on('click', function(event){
     console.log('signup ran');
+
+    //create user
+    postUsers();
+
     event.preventDefault();
     var emailval = email.val();
     var pass = password.val();
@@ -45,7 +50,7 @@ $(document).ready(function() {
     console.log(pass);
     auth.createUserWithEmailAndPassword(emailval, pass).then(function(){
       window.location.href="index.html";
-    }).catch(function(erro){
+    }).catch(function(error){
       console.log('sign-in error', error)
     })
   });
@@ -68,5 +73,15 @@ $(document).ready(function() {
       console.log("Not a user");
     };
   });
+//create new user
+  function postUsers(userData){
+    $.post("/api/users", userData)
+      .then(getUsers);
+  }
+
+//get user information
+  function getUsers(user){
+    $.get("/api/users", user);
+  }
 
 )};
