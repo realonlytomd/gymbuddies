@@ -60,12 +60,12 @@
                             </div>
                   <div class="col-md-8 order-md-1">
                     <h4 class="mb-3">Workout Log</h4>
-                    <form class="needs-validation" novalidate="">
+                    <form class="needs-validation" novalidate="" id="workoutLog">
                       <div class="row">
                       <div class="row">
                           <div class="col-md-4 mb-3">
                               <label for="state">1. Choose Your Body Part</label>
-                                  <select class="custom-select d-block w-100" id="category" >
+                                  <select class="custom-select d-block w-100" id="body-part" >
                                       <option value="">Choose...</option>
                                       
                                   </select>
@@ -78,18 +78,18 @@
                                   </select>
                               </div> 
                         <div class="col-md-6 mb-3">
-                          <label for="firstName">Weight</label>
-                          <input type="text" class="form-control" id="firstName" placeholder="" value="">
+                          <label for="weight">Weight</label>
+                          <input type="text" class="form-control" id="weight" placeholder="" value="">
               
                         </div>
                         <div class="col-md-6 mb-3">
-                          <label for="lastName">Reps</label>
-                          <input type="text" class="form-control" id="lastName" placeholder="" value="">
+                          <label for="reps">Reps</label>
+                          <input type="text" class="form-control" id="reps" placeholder="" value="">
                           
                         </div>
                         <div class="col-md-6 mb-3">
-                                <label for="lastName">Sets</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value="">
+                                <label for="sets">Sets</label>
+                                <input type="text" class="form-control" id="sets" placeholder="" value="">
                                 
                               </div>
                       </div>
@@ -99,7 +99,7 @@
               <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn">
+                        <button class="login100-form-btn" id="enterWorkout" type="submit">
                             Enter Workout
                         </button>
                     </div>
@@ -148,3 +148,5 @@
         <script type='text/javascript' src='js/main.js'></script>
     </body>
 </html>
+
+
