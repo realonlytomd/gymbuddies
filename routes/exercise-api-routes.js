@@ -15,7 +15,7 @@ module.exports = function(app) {
     // set the value to an array of the models to be included in a left outer join
     // so, just db.User
     db.Exercise.findAll({
-      where: req.params.id,
+      where: {UserId: req.params.id},
       include: [db.User]
     }).then(function(dbExercise) {
       res.json(dbExercise);
