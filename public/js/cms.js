@@ -8,8 +8,8 @@ $(document).ready(function () {
   var workoutForm = $("#workoutLog");
 
   // Adding an event listener for when the form is submitted
-  $(workoutForm).on("submit", handleFormSubmit);
-    
+  $(workoutForm).on("submit", handleFormSubmit);  
+
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
   var url = window.location.search;
   var exerciseId;
@@ -24,10 +24,25 @@ $(document).ready(function () {
 
   // Getting the authors, and their posts
   // getUsers();
-
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
   // A function for handling what happens when the form to create a new post is submitted
   function handleFormSubmit(event) {
     event.preventDefault();
+var id= getCookie("gymbuddyid");
+  
     //Wont submit tp the workout if we are missing a body-part and exercise
     if (!bodypartSelect.val() === undefined && !exerciseSelect.val() === undefined) {
       return;
@@ -45,10 +60,21 @@ $(document).ready(function () {
       weight: weightInput
         .val()
         .trim(),
-      UserId: UserId
+      UserId: id
     };
+    var newRow = $("<tr>");
 
-    console.log(newWorkout);
+    var firstTd = $("<td>").text(exerciseSelect.val());
+    var secondTd = $("<td>").text(weightInput.val());
+    var thirdTd = $("<td>").text(repsInput.val());
+    var fourthTd = $("<td>").text(setsInput.val());
+
+    newRow.append(firstTd);
+    newRow.append(secondTd);
+    newRow.append(thirdTd);
+    newRow.append(fourthTd);
+
+    $("#tbody-new-row").append(newRow);
 
   //   // If we're updating a post run updatePost to update a post
   //   // Otherwise run submitPost to create a whole new post
@@ -60,18 +86,18 @@ $(document).ready(function () {
   //     submitPost(newPost);
   //   }
   // }
-  submitExercise(newWorkout);
-
-}
-
-
-  // Submits a new exercise and brings user to log page upon completion
-  function submitExercise(post) {
-    $.post("/api/exercises", post, function () {
-      window.location.href = "/log";
-    });
+  // submitExercise(newWorkout);
   }
 });
+
+
+//   Submits a new exercise and brings user to log page upon completion
+//   function submitExercise(post) {
+//     $.post("/api/exercises", post, function () {
+//       window.location.href = "/log";
+//     });
+//   }
+// });
 
 
 
