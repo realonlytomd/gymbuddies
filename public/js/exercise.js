@@ -2,7 +2,7 @@ $(document).ready(function() {
   /* global moment */
 
   // blogContainer holds all of our posts
-  var exerciseContainer = $(".exercise-container");
+  var exerciseSummary = $("#summaryTable");
   // var postCategorySelect = $("#category");
   // // Click events for the edit and delete buttons
   // $(document).on("click", "button.delete", handlePostDelete);
@@ -31,7 +31,7 @@ $(document).ready(function() {
       userId = "/?user_id=" + userId;
     }
     $.get("/api/exercises" + userId, function(data) {
-      console.log("exercises", data);
+      console.log("this is exercises", data);
       exercises = data;
       if (!exercises || !exercises.length) {
         displayEmpty(user);
@@ -60,33 +60,33 @@ $(document).ready(function() {
     for (var i = 0; i < exercises.length; i++) {
       exercisesToAdd.push(createNewRow(posts[i]));
     }
-    summaryTable.append(postsToAdd);
+    summaryTable.append(exercisesToAdd);
   }
 
   // This function constructs a post's HTML
   function createNewRow(post) {
-    var formattedDate = new Date(post.createdAt);
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    var newPostPanel = $("<div>");
-    newPostPanel.addClass("panel panel-default");
-    var newPostPanelHeading = $("<div>");
-    newPostPanelHeading.addClass("panel-heading");
-    var deleteBtn = $("<button>");
-    deleteBtn.text("x");
-    deleteBtn.addClass("delete btn btn-danger");
-    var editBtn = $("<button>");
-    editBtn.text("EDIT");
-    editBtn.addClass("edit btn btn-info");
-    var newPostTitle = $("<h2>");
-    var newPostDate = $("<small>");
-    var newPostAuthor = $("<h5>");
-    newPostAuthor.text("Written by: Author name display is in next activity when we learn joins!");
-    newPostAuthor.css({
-      float: "right",
-      color: "blue",
-      "margin-top":
-      "-10px"
-    });
+    // var formattedDate = new Date(post.createdAt);
+    // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+    // var newPostPanel = $("<div>");
+    // newPostPanel.addClass("panel panel-default");
+    // var newPostPanelHeading = $("<div>");
+    // newPostPanelHeading.addClass("panel-heading");
+    // var deleteBtn = $("<button>");
+    // deleteBtn.text("x");
+    // deleteBtn.addClass("delete btn btn-danger");
+    // var editBtn = $("<button>");
+    // editBtn.text("EDIT");
+    // editBtn.addClass("edit btn btn-info");
+    // var newPostTitle = $("<h2>");
+    // var newPostDate = $("<small>");
+    // var newPostAuthor = $("<h5>");
+    // newPostAuthor.text("Written by: Author name display is in next activity when we learn joins!");
+    // newPostAuthor.css({
+    //   float: "right",
+    //   color: "blue",
+    //   "margin-top":
+    //   "-10px"
+    // });
     var newPostPanelBody = $("<div>");
     newPostPanelBody.addClass("panel-body");
     var newPostBody = $("<p>");

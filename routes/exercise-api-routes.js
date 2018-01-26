@@ -10,16 +10,12 @@ var db = require("../models");
 module.exports = function(app) {
 
   // GET route for getting all of the exercises
-  app.get("/api/exercises", function(req, res) {
-    var query = {};
-    if (req.query.user_id) {
-      query.UserId = req.query.user_id;
-    }
+  app.get("/api/exercises/:id", function(req, res) {
     // add an "include" property to the options in the findAll query
     // set the value to an array of the models to be included in a left outer join
     // so, just db.User
     db.Exercise.findAll({
-      where: query,
+      where: req.params.id,
       include: [db.User]
     }).then(function(dbExercise) {
       res.json(dbExercise);
@@ -59,10 +55,9 @@ module.exports = function(app) {
       sets: req.body.sets,
       reps: req.body.reps,
       weight: req.body.weight,
-      UserId: UserId
+      UserId: req.body.UserId
     })
     .then(function(dbExercise) {
-      console.log(dbExercise);
       res.json(dbExercise);
     });
 
