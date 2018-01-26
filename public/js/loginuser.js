@@ -43,11 +43,11 @@ $(document).ready(function() {
   });
 
 
-  //logout user
-  logout.on('click', function(){
-    firebase.auth().signOut();
-    window.location.href = "index.html";
-  });
+  // //logout user
+  // logout.on('click', function(){
+  //   firebase.auth().signOut();
+  //   window.location.href = "index.html";
+  // });
 
   //verify if user is a user
   firebase.auth().onAuthStateChanged(function(user) {
