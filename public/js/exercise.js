@@ -1,8 +1,8 @@
 $(document).ready(function() {
   /* global moment */
 
-  // summaryTable holds all of the users exercises
-  var summaryTable = $("#summary");
+  // blogContainer holds all of our posts
+  var exerciseContainer = $(".exercise-container");
   // var postCategorySelect = $("#category");
   // // Click events for the edit and delete buttons
   // $(document).on("click", "button.delete", handlePostDelete);
