@@ -45,7 +45,7 @@ $(document).ready(function () {
       weight: weightInput
         .val()
         .trim(),
-      UserId: 1
+      UserId: UserId
     };
 
     console.log(newWorkout);
