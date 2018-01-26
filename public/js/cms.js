@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // Getting jQuery references to the post body, title, form, and author select
   var bodypartSelect = $("#body-part");
   var exerciseSelect = $("#exercise");
@@ -7,41 +7,36 @@ $(document).ready(function() {
   var setsInput = $("#sets");
   var workoutForm = $("#workoutLog");
 
-  // // Adding an event listener for when the form is submitted
-  // $(workoutForm).on("submit", handleFormSubmit);
-  // // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
-  // var url = window.location.search;
-  // var postId;
-  // var authorId;
-  // // Sets a flag for whether or not we're updating a post to be false initially
-  // var updating = false;
+  // Adding an event listener for when the form is submitted
+  $(workoutForm).on("submit", handleFormSubmit);
+    
+  // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
+  var url = window.location.search;
+  var exerciseId;
+  var usersId;
+  // Sets a flag for whether or not we're updating a post to be false initially
+  var updating = false;
 
-  // // If we have this section in our url, we pull out the post id from the url
-  // // In '?post_id=1', postId is 1
-  // if (url.indexOf("?post_id=") !== -1) {
-  //   postId = url.split("=")[1];
-  //   getPostData(postId, "post");
-  // }
-  // // Otherwise if we have an author_id in our url, preset the author select box to be our Author
-  // else if (url.indexOf("?author_id=") !== -1) {
-  //   authorId = url.split("=")[1];
-  // }
+ // Otherwise if we have an author_id in our url, preset the author select box to be our Author
+  if (url.indexOf("?user_id=") !== -1) {
+    usersId = url.split("=")[1];
+  }
 
-  // // Getting the authors, and their posts
-  // getAuthors();
+  // Getting the authors, and their posts
+  // getUsers();
 
   // A function for handling what happens when the form to create a new post is submitted
   function handleFormSubmit(event) {
     event.preventDefault();
-    // Wont submit tp the workout if we are missing a body-part and exercise
-    if (!bodypartSelect.val() && !exerciseSelect.val()) {
+    //Wont submit tp the workout if we are missing a body-part and exercise
+    if (!bodypartSelect.val() === undefined && !exerciseSelect.val() === undefined) {
       return;
     }
     // Constructing a newPost object to hand to the database
     var newWorkout= {
       title: exerciseSelect.val(),
       body_part: bodypartSelect.val(),
-      sets: setInput
+      sets: setsInput
         .val()
         .trim(),
       reps: repsInput
@@ -50,10 +45,11 @@ $(document).ready(function() {
       weight: weightInput
         .val()
         .trim(),
+      UserId: UserId
     };
 
     console.log(newWorkout);
-    
+
   //   // If we're updating a post run updatePost to update a post
   //   // Otherwise run submitPost to create a whole new post
   //   if (updating) {
@@ -64,13 +60,31 @@ $(document).ready(function() {
   //     submitPost(newPost);
   //   }
   // }
+  submitExercise(newWorkout);
+
+}
+
 
   // Submits a new exercise and brings user to log page upon completion
   function submitExercise(post) {
-    $.post("/api/exercises", post, function() {
+    $.post("/api/exercises", post, function () {
       window.location.href = "/log";
     });
   }
+});
+
+
+
+
+  // Submits a new exercise and brings user to log page upon completion
+//   function submitExerciseLog(post) {
+//     $.post("/api/exercises", post, function() {
+//       window.location.href = "/log";
+//     });
+//   }
+
+//  }
+
 
   // // Gets post data for the current post if we're editing, or if we're adding to an author's existing posts
   // function getPostData(id, type) {
@@ -139,4 +153,4 @@ $(document).ready(function() {
   //     window.location.href = "/blog";
   //   });
   // }
-});
+

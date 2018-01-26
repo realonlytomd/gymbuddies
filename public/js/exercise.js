@@ -3,7 +3,7 @@ $(document).ready(function() {
 
   // blogContainer holds all of our posts
   var exerciseContainer = $(".exercise-container");
-  var postCategorySelect = $("#category");
+  // var postCategorySelect = $("#category");
   // // Click events for the edit and delete buttons
   // $(document).on("click", "button.delete", handlePostDelete);
   // $(document).on("click", "button.edit", handlePostEdit);
@@ -16,12 +16,12 @@ $(document).ready(function() {
   var userId;
   if (url.indexOf("?user_id=") !== -1) {
     userId = url.split("=")[1];
-    getPosts(userId);
+    getExercises(userId);
   }
-  // If there's no authorId we just get all posts as usual
-  else {
-    getPosts();
-  }
+  // // If there's no authorId we just get all posts as usual
+  // else {
+  //   getPosts();
+  // }
 
 
   // This function grabs posts from the database and updates the view
@@ -55,12 +55,12 @@ $(document).ready(function() {
 
   // InitializeRows handles appending all of our constructed post HTML inside blogContainer
   function initializeRows() {
-    blogContainer.empty();
-    var postsToAdd = [];
-    for (var i = 0; i < posts.length; i++) {
-      postsToAdd.push(createNewRow(posts[i]));
+    summaryTable.empty();
+    var exercisesToAdd = [];
+    for (var i = 0; i < exercises.length; i++) {
+      exercisesToAdd.push(createNewRow(posts[i]));
     }
-    blogContainer.append(postsToAdd);
+    summaryTable.append(postsToAdd);
   }
 
   // This function constructs a post's HTML

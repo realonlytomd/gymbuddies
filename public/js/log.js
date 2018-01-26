@@ -26,6 +26,7 @@ $(document).ready(function() {
     	};
     	exerciseSelect.empty();
     	exerciseSelect.append(rowsToAdd);
+    	
   	};
 
 	// Creates the options in the dropdown

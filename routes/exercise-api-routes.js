@@ -42,14 +42,31 @@ module.exports = function(app) {
   });
 
   // POST route for saving a new exercise
+  // app.post("/api/exercises", function(req, res) {
+  //   // create a exercise model
+  //   // create a user model
+  //   // look at docs for creating a relationship bt models
+  //   // drilled down to req.body as the likely issue
+  //   db.Exercise.create(req.body).then(function(dbExercise) {
+  //     res.json(dbExercise);
+  //   });
+  // });
+
   app.post("/api/exercises", function(req, res) {
-    // create a exercise model
-    // create a user model
-    // look at docs for creating a relationship bt models
-    // drilled down to req.body as the likely issue
-    db.Exercise.create(req.body).then(function(dbExercise) {
+    db.Exercise.create({
+      title: req.body.title,
+      body_part: req.body.body_part,
+      sets: req.body.sets,
+      reps: req.body.reps,
+      weight: req.body.weight,
+      UserId: UserId
+    })
+    .then(function(dbExercise) {
+      console.log(dbExercise);
       res.json(dbExercise);
     });
+
+    
   });
 
   // DELETE route for deleting exercises
