@@ -59,10 +59,9 @@ module.exports = function(app) {
       sets: req.body.sets,
       reps: req.body.reps,
       weight: req.body.weight,
-      UserId: UserId
+      UserId: req.body.UserId
     })
     .then(function(dbExercise) {
-      console.log(dbExercise);
       res.json(dbExercise);
     });
 
