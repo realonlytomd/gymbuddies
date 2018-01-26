@@ -12,10 +12,14 @@ $(document).ready(function() {
   firebase.initializeApp(config);
 
 //Variables
+  var database = firebase.database();
+  var auth = firebase.auth();
+  var user = firebase.auth().currentUser;
   var login = $("#login");
   var signup = $("#signup");
   var email = $("#email");
   var password = $("#password");
+  // var logout = $("#logout");
 
 //user login
   login.on('click', function(event){
@@ -27,38 +31,51 @@ $(document).ready(function() {
     var auth = firebase.auth();
     console.log(emailval);
     console.log(pass);
-    auth.signInWithEmailAnPassword(emailval, pass).then(function(){
-      window.location.href = "log.html";
+    auth.signInWithEmailAndPassword(emailval, pass).then(function() {
+
+      window.location.href = 'log.html';
     }).catch(function(error){
-      console.log('sign-in error', error.code)
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log('sign-in error', error.code);
     })
   });
 
   //create new userData
   signup.on('click', function(event){
     console.log('signup ran');
+    //get email and password
     event.preventDefault();
-    var emailval = email.val();
-    var pass = password.val();
+    var emailval = email.val().trim();
+    var pass = password.val().trim();
     var auth = firebase.auth();
     console.log(emailval);
     console.log(pass);
     auth.createUserWithEmailAndPassword(emailval, pass).then(function(){
-      window.location.href="index.html";
-    }).catch(function(erro){
-      console.log('sign-in error', error)
+      userData({
+        email: email
+        .val()
+        .trim()
+      });
+      window.location.href='login.html';
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log('sign-in error', error);
+
+
     })
   });
 
   //logout user
-  logout.on('click', function(){
-    firebase.auth().signOut();
-    window.location.href = "index.html";
-  });
+  // logout.on('click', function(){
+  //   firebase.auth().signOut();
+  //   window.location.href = "index.html";
+  // });
 
-  //verify user
-  firebase.auth().onAuthStateChanged(function(user){
-    if(user){
+  verify user
+  firebase.auth().onAuthStateChanged(function(user) {
+    if(user) {
       console.log("They're a user");
       var email = user.email;
       var uid = user.uid;
@@ -69,4 +86,19 @@ $(document).ready(function() {
     };
   });
 
-)};
+  //create new user
+
+
+  function userData(userData){
+    $.post("/api/users", userData)
+      .then(getUsers);
+  }
+
+//get user information
+  function getUsers(user){
+    $.get("/api/users", user);
+  }
+
+
+
+});

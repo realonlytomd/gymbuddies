@@ -12,13 +12,13 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/users/:id", function(req, res) {
+  app.get("/api/users/:email", function(req, res) {
     // add an "include" property to the options in the findOne query
     // Set the value to an array of the models to be included in a left outer join
     // In this case, just db.Exercise
     db.User.findOne({
       where: {
-        id: req.params.id
+        email: req.params.email
       },
       include: [db.Exercise]
     }).then(function(dbUser) {
