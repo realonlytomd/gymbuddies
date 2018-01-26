@@ -13,13 +13,13 @@ $(document).ready(function () {
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
   var url = window.location.search;
   var exerciseId;
-  var userId;
+  var usersId;
   // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false;
 
  // Otherwise if we have an author_id in our url, preset the author select box to be our Author
   if (url.indexOf("?user_id=") !== -1) {
-    userId = url.split("=")[1];
+    usersId = url.split("=")[1];
   }
 
   // Getting the authors, and their posts
@@ -28,10 +28,10 @@ $(document).ready(function () {
   // A function for handling what happens when the form to create a new post is submitted
   function handleFormSubmit(event) {
     event.preventDefault();
-    // Wont submit tp the workout if we are missing a body-part and exercise
-    // if (!bodypartSelect.val() === undefined && !exerciseSelect.val()) {
-    //   return;
-    // }
+    //Wont submit tp the workout if we are missing a body-part and exercise
+    if (!bodypartSelect.val() === undefined && !exerciseSelect.val() === undefined) {
+      return;
+    }
     // Constructing a newPost object to hand to the database
     var newWorkout= {
       title: exerciseSelect.val(),
@@ -45,7 +45,7 @@ $(document).ready(function () {
       weight: weightInput
         .val()
         .trim(),
-      userId: 1
+      UserId: 1
     };
 
     console.log(newWorkout);
