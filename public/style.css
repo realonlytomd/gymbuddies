@@ -1834,3 +1834,12 @@ label {
     min-width: 5em;
     max-width: 10em;
 }
+#signup {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 165px;
+    border-radius: 25px;
+    /* padding: 22px; */
+    align-items: center;
+    justify-content: center;
+}
