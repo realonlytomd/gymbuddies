@@ -16,14 +16,14 @@ $(document).ready(function() {
   var auth = firebase.auth();
   var user = firebase.auth().currentUser;
   var login = $("#login");
-  //var signup = $("#signup");
   var email = $("#email");
   var password = $("#password");
-  // var logout = $("#logout");
+  var logout = $("#logout");
 
 //user login
   login.on('click', function(event){
     console.log('login ran');
+
     //store user email and password
     event.preventDefault();
     var emailval = email.val();
@@ -33,7 +33,9 @@ $(document).ready(function() {
     console.log(pass);
     auth.signInWithEmailAndPassword(emailval, pass).then(function() {
 
-      window.location.href = 'log.html';
+      //grab user email
+      getUsers(emailval);
+
     }).catch(function(error){
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -41,41 +43,14 @@ $(document).ready(function() {
     })
   });
 
-  // //create new userData
-  // signup.on('click', function(event){
-  //   console.log('signup ran');
-  //   //hide signup button
-  //   signup.hide();
-  //   //get email and password
-  //   event.preventDefault();
-  //   var emailval = email.val().trim();
-  //   var pass = password.val().trim();
-  //   var auth = firebase.auth();
-  //   console.log(emailval);
-  //   console.log(pass);
-  //   auth.createUserWithEmailAndPassword(emailval, pass).then(function(){
-  //     userData({
-  //       email: email
-  //       .val()
-  //       .trim()
-  //     });
-  //     window.location.href='login.html';
-  //   }).catch(function(error) {
-  //     var errorCode = error.code;
-  //     var errorMessage = error.message;
-  //     console.log('sign-in error', error);
-  //
-  //
-  //   })
-  // });
 
   //logout user
-  // logout.on('click', function(){
-  //   firebase.auth().signOut();
-  //   window.location.href = "index.html";
-  // });
+  logout.on('click', function(){
+    firebase.auth().signOut();
+    window.location.href = "index.html";
+  });
 
-  //verify user
+  //verify if user is a user
   firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
       console.log("They're a user");
@@ -88,18 +63,28 @@ $(document).ready(function() {
     };
   });
 
-  //create new user
-
-
-  function userData(userData){
-    $.post("/api/users", userData)
-      .then(getUsers);
-  }
 
 //get user information
-  function getUsers(user){
-    $.get("/api/users", user);
-  }
+function getUsers(email) {
+  $.get("/api/users/" + email, useremail
+  )};
+
+//function to call cookie function
+function useremail(data){
+  setCookie("gymbuddyid", data.id, 100);
+  //redirect user to log.html page
+  window.location.href = 'log.html';
+
+}
+
+//set cookie function to save information
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
 
 
 

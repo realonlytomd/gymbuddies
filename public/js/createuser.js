@@ -22,7 +22,7 @@ $(document).ready(function() {
     var fullname = $("#fullname");
     var username = $("#username");
 
-    //create new userData
+    //create new user
     signup.on('click', function(event){
       console.log('signup ran');
 
@@ -37,28 +37,24 @@ $(document).ready(function() {
       console.log(emailval);
       console.log(pass);
       auth.createUserWithEmailAndPassword(emailval, pass).then(function(){
-        userData({
-          email: email
-          .val()
-          .trim()
-        });
-        window.location.href='login.html';
-        window.signup.hide();
+        var newUser = {email: emailval};
+        userData(newUser);
+
+        //catch login error
       }).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log('sign-in error', error);
-
-
       })
     });
 
-      function userData(userData){
-        $.post("/api/users", userData)
-          .then(getUsers);
+    //create user on sql table
+      function userData(newUser){
+        $.post("/api/users", newUser, function(){
+        //redirect user to login.html page after creating account
+        window.location.href='login.html';
+      });
+
       }
-      function getUsers() {
-        $.get("/api/users", function();
-        };
 
   });
