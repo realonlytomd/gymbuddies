@@ -8,7 +8,7 @@ $(document).ready(function () {
   var workoutForm = $("#workoutLog");
 
   // Adding an event listener for when the form is submitted
-  $(workoutForm).on("submit", handleFormSubmit);  
+  $("#enterWorkout").on("click", handleFormSubmit);  
 
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
   var url = window.location.search;
@@ -41,8 +41,8 @@ $(document).ready(function () {
   // A function for handling what happens when the form to create a new post is submitted
   function handleFormSubmit(event) {
     event.preventDefault();
-var id= getCookie("gymbuddyid");
-  
+    var id= getCookie("gymbuddyid");
+    console.log(id);
     //Wont submit tp the workout if we are missing a body-part and exercise
     if (!bodypartSelect.val() === undefined && !exerciseSelect.val() === undefined) {
       return;
@@ -62,6 +62,9 @@ var id= getCookie("gymbuddyid");
         .trim(),
       UserId: id
     };
+
+    submitExercise(newWorkout);
+
     var newRow = $("<tr>");
 
     var firstTd = $("<td>").text(exerciseSelect.val());
@@ -88,16 +91,20 @@ var id= getCookie("gymbuddyid");
   // }
   // submitExercise(newWorkout);
   }
+  $("#viewWorkout").on("click", viewSummary);
+  function viewSummary(event) {
+    event.preventDefault();
+    window.location.href = "/summary";
+  }
+  //   Submits a new exercise and brings user to log page upon completion
+  function submitExercise(post) {
+    $.post("/api/exercises", post, function () {
+    });
+  }
 });
 
 
-//   Submits a new exercise and brings user to log page upon completion
-//   function submitExercise(post) {
-//     $.post("/api/exercises", post, function () {
-//       window.location.href = "/log";
-//     });
-//   }
-// });
+
 
 
 

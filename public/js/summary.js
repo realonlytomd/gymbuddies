@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $.get("/api/exercises" + getCookie("gymbuddyid"), renderTable);
+    $.get("/api/exercises/" + getCookie("gymbuddyid"), renderTable);
 
     function getCookie(cname) {
         var name = cname + "=";
@@ -17,13 +17,14 @@ $(document).ready(function () {
     }
 
     function renderTable (exercises) {
-            summaryTable.empty();
+        
             for (var i = 0; i < exercises.length; i++) {
                 createNewRow(exercises[i]);
             }
     }
 
     function createNewRow (exercise) {
+        
         var title = exercise.title;
         var weight = exercise.weight;
         var reps= exercise.reps;
@@ -43,3 +44,5 @@ $(document).ready(function () {
 
         $("#summary2").append(newRow);
     }
+
+});

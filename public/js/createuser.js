@@ -34,8 +34,7 @@ $(document).ready(function() {
       var pass2 = password2.val().trim();
       var name = fullname.val().trim();
       var auth = firebase.auth();
-      console.log(emailval);
-      console.log(pass);
+    
       auth.createUserWithEmailAndPassword(emailval, pass).then(function(){
         var newUser = {email: emailval};
         userData(newUser);

@@ -22,15 +22,14 @@ $(document).ready(function() {
 
 //user login
   login.on('click', function(event){
-    console.log('login ran');
+    
 
     //store user email and password
     event.preventDefault();
     var emailval = email.val();
     var pass = password.val();
     var auth = firebase.auth();
-    console.log(emailval);
-    console.log(pass);
+   
     auth.signInWithEmailAndPassword(emailval, pass).then(function() {
 
       //grab user email
@@ -39,7 +38,7 @@ $(document).ready(function() {
     }).catch(function(error){
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log('sign-in error', error.code);
+      
     })
   });
 
@@ -56,8 +55,7 @@ $(document).ready(function() {
       console.log("They're a user");
       var email = user.email;
       var uid = user.uid;
-      console.log(email);
-      console.log(uid);
+      
     }else{
       console.log("Not a user");
     };
