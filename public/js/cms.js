@@ -73,7 +73,7 @@ $(document).ready(function () {
   }
 });
 
-});
+
 
 
   // Submits a new exercise and brings user to log page upon completion

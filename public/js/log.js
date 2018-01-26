@@ -26,10 +26,7 @@ $(document).ready(function() {
     	};
     	exerciseSelect.empty();
     	exerciseSelect.append(rowsToAdd);
-<<<<<<< Updated upstream
-=======
     	
->>>>>>> Stashed changes
   	};
 
 	// Creates the options in the dropdown
