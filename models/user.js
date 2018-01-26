@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    // Give the User model a name of type STRING
-    name: DataTypes.STRING
+    // Give the User model a email of type STRING
+    email: DataTypes.STRING
   });
 
   User.associate = function(models) {
@@ -14,4 +14,3 @@ module.exports = function(sequelize, DataTypes) {
 
   return User;
 };
-
