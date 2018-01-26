@@ -52,6 +52,20 @@ module.exports = function(app) {
     });
   });
 
+  // app.post("/api/exercises", function(req, res) {
+  //   db.Exercise.create({
+  //     title: req.body.title,
+  //     body_part: req.body.body_part,
+  //     sets: req.body.sets,
+  //     reps: req.body.reps,
+  //     weight: req.body.weight
+
+  //   })
+  //   .then(function(dbExercise) {
+  //     res.json(dbExercise);
+  //   });
+  // });
+
   // DELETE route for deleting exercises
   app.delete("/api/exercises/:id", function(req, res) {
     db.Exercise.destroy({
