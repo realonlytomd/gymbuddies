@@ -16,7 +16,7 @@ $(document).ready(function() {
   var auth = firebase.auth();
   var user = firebase.auth().currentUser;
   var login = $("#login");
-  var signup = $("#signup");
+  //var signup = $("#signup");
   var email = $("#email");
   var password = $("#password");
   // var logout = $("#logout");
@@ -41,31 +41,33 @@ $(document).ready(function() {
     })
   });
 
-  //create new userData
-  signup.on('click', function(event){
-    console.log('signup ran');
-    //get email and password
-    event.preventDefault();
-    var emailval = email.val().trim();
-    var pass = password.val().trim();
-    var auth = firebase.auth();
-    console.log(emailval);
-    console.log(pass);
-    auth.createUserWithEmailAndPassword(emailval, pass).then(function(){
-      userData({
-        email: email
-        .val()
-        .trim()
-      });
-      window.location.href='login.html';
-    }).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log('sign-in error', error);
-
-
-    })
-  });
+  // //create new userData
+  // signup.on('click', function(event){
+  //   console.log('signup ran');
+  //   //hide signup button
+  //   signup.hide();
+  //   //get email and password
+  //   event.preventDefault();
+  //   var emailval = email.val().trim();
+  //   var pass = password.val().trim();
+  //   var auth = firebase.auth();
+  //   console.log(emailval);
+  //   console.log(pass);
+  //   auth.createUserWithEmailAndPassword(emailval, pass).then(function(){
+  //     userData({
+  //       email: email
+  //       .val()
+  //       .trim()
+  //     });
+  //     window.location.href='login.html';
+  //   }).catch(function(error) {
+  //     var errorCode = error.code;
+  //     var errorMessage = error.message;
+  //     console.log('sign-in error', error);
+  //
+  //
+  //   })
+  // });
 
   //logout user
   // logout.on('click', function(){
@@ -73,7 +75,7 @@ $(document).ready(function() {
   //   window.location.href = "index.html";
   // });
 
-  verify user
+  //verify user
   firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
       console.log("They're a user");
