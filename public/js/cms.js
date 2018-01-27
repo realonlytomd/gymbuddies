@@ -63,7 +63,17 @@ $(document).ready(function () {
       UserId: id
     };
 
+
     submitExercise(newWorkout);
+
+
+    //     // clear the fields
+    // $("#body-part").val("");
+    // $("#exercise").val("");
+    // $("#weight").val("");
+    // $("#reps").val("");
+    // $("#sets").val("");
+
 
     var newRow = $("<tr>");
 
@@ -78,6 +88,13 @@ $(document).ready(function () {
     newRow.append(fourthTd);
 
     $("#tbody-new-row").append(newRow);
+
+          // clear the fields
+    $("#body-part").val("");
+    $("#exercise").val("");
+    $("#weight").val("");
+    $("#reps").val("");
+    $("#sets").val("");
 
   //   // If we're updating a post run updatePost to update a post
   //   // Otherwise run submitPost to create a whole new post
